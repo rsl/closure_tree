@@ -5,7 +5,7 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table "tags" do |t|
     t.string "name"
     t.string "title"
-    t.integer "parent_id"
+    t.belongs_to("parent", foreign_key: {to_table: "tags"}
     t.integer "sort_order"
     t.timestamps null: false
   end
