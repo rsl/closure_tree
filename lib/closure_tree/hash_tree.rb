@@ -2,8 +2,10 @@ module ClosureTree
   module HashTree
     extend ActiveSupport::Concern
 
-    def hash_tree(options = {})
-      _ct.hash_tree(self_and_descendants, options[:limit_depth])
+    def hash_tree(options = {}, &block)
+      scope = self_and_descendants
+      scope = block.call(scope) if block
+      _ct.hash_tree(scope, options[:limit_depth])
     end
 
     module ClassMethods

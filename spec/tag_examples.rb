@@ -639,6 +639,12 @@ shared_examples_for Tag do
         it 'no limit from root' do
           expect(@a.hash_tree.merge(@a2.hash_tree)).to eq(@full_tree.slice(@a, @a2))
         end
+        it 'adds passed scope to hash_tree scope' do
+          hash_tree_with_scope = @b.hash_tree do |scope|
+            scope.includes(:children)
+          end
+          expect(hash_tree_with_scope.keys.first.children.loaded?).to eq(true)
+        end
       end
 
       context '.hash_tree from relations' do
