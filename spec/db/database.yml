@@ -13,7 +13,7 @@ sqlite:
 postgresql:
   <<: *common
   adapter: postgresql
-  username: postgres
+  # username: postgres
 
 mysql:
   <<: *common
